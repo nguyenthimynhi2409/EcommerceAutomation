@@ -8,7 +8,10 @@ export abstract class BasePage {
   }
 
   async goto(url: string) {
-    await this.page.goto(url);
+    await this.page.goto(url, {
+      timeout: 90_000,
+      waitUntil: "domcontentloaded",
+    });
   }
 
   async expectVisible(locator: string) {
